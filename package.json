@@ -1,0 +1,33 @@
+{
+  "name": "sodextra",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.16.1",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json && tsc -p apps/web/tsconfig.json",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run typecheck && npm run lint && npm run test",
+    "smoke:read": "tsx packages/sodex-client/scripts/smoke-read.ts",
+    "smoke:signed": "tsx packages/sodex-client/scripts/smoke-signed.ts",
+    "bot": "tsx apps/cli/src/main.ts",
+    "api": "tsx apps/api/src/main.ts",
+    "vault:key": "node -e \"console.log('SODEXTRA_VAULT_KEY=' + require('node:crypto').randomBytes(32).toString('base64'))\"",
+    "web": "npm --prefix apps/web run dev"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.19.2",
+    "eslint": "^10.6.0",
+    "prettier": "^3.9.10",
+    "tsx": "^4.23.15",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^4.1.12"
+  }
+}
