@@ -1,0 +1,22 @@
+{
+  "name": "@sodextra/api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local dashboard API: serves the bots' state from .sodextra/sodextra.db to the web app",
+  "type": "module",
+  "exports": {
+    "./types": "./src/types.ts"
+  },
+  "scripts": {
+    "dev": "tsx src/main.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@sodextra/cli": "workspace:*",
+    "@sodextra/engine-core": "workspace:*",
+    "@sodextra/sodex-client": "workspace:*",
+    "@sodextra/strategies": "workspace:*",
+    "viem": "2.57.13"
+  }
+}
