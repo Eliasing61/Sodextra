@@ -1,0 +1,21 @@
+{
+  "name": "@sodextra/sodex-client",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SoDEX REST/WebSocket client with EIP-712 signing, nonces and rate limits",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "smoke:read": "tsx scripts/smoke-read.ts",
+    "smoke:signed": "tsx scripts/smoke-signed.ts"
+  },
+  "dependencies": {
+    "decimal.js": "^10.6.0",
+    "lossless-json": "^4.3.3",
+    "viem": "^2.57.13"
+  }
+}

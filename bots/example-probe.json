@@ -1,0 +1,16 @@
+{
+  "name": "probe-btc",
+  "strategy": "probe",
+  "market": "perps",
+  "symbol": "BTC-USD",
+  "risk": {
+    "maxNotional": 20,
+    "maxLoss": 2,
+    "maxOpenOrders": 2,
+    "maxLeverage": 2
+  },
+  "side": "BUY",
+  "offsetPct": 3,
+  "repriceAtPct": 1,
+  "paper": { "quoteBalance": "1000" }
+}

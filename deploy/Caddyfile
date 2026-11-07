@@ -1,0 +1,11 @@
+# Caddy site for the dashboard API (setup.sh replaces sodextra.xyz with the domain it is
+# given). The website runs on Vercel and reaches the API here through its /api proxy,
+# which sends the shared secret (SODEXTRA_PROXY_SECRET); the API refuses anything else.
+# Caddy gets and renews the HTTPS certificate itself.
+api.sodextra.xyz {
+	encode zstd gzip
+	request_body {
+		max_size 64KB
+	}
+	reverse_proxy 127.0.0.1:3101
+}

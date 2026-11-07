@@ -1,0 +1,49 @@
+# Dashboard API (apps/api) on 127.0.0.1:3101. It starts the bots as its own child
+# processes, so KillMode=process: restarting or stopping the API leaves running
+# bots alone (stop bots from the website). After a reboot it starts again the bots
+# that were running (SODEXTRA_AUTO_RESUME, apps/api/src/resume.ts).
+[Unit]
+Description=Sodextra dashboard API and bots
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=sodextra
+Group=sodextra
+WorkingDirectory=/opt/sodextra
+# node itself is the main process (not npm), so KillMode=process stops the API only.
+ExecStart=/usr/bin/node --import tsx apps/api/src/main.ts
+Environment=NODE_ENV=production
+Environment=SODEXTRA_AUTO_RESUME=1
+# SoDEX's limits are per IP. The server also has IPv6, which Node would pick first: reach SoDEX
+# over IPv4 so it always sees one address. The bots inherit this.
+Environment=NODE_OPTIONS=--dns-result-order=ipv4first
+Restart=always
+RestartSec=5
+KillMode=process
+TimeoutStopSec=20
+
+# Sandbox (bots inherit it): read-only system, writes only to the data and bot-file folders.
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/sodextra/.sodextra /opt/sodextra/bots/web
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+CapabilityBoundingSet=
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

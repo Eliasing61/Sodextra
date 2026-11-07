@@ -1,0 +1,23 @@
+{
+  "name": "grid-btc",
+  "strategy": "grid",
+  "market": "perps",
+  "symbol": "BTC-USD",
+  "risk": {
+    "maxNotional": 150,
+    "maxLoss": 5,
+    "maxOpenOrders": 20,
+    "maxLeverage": 3
+  },
+  "type": "neutral",
+  "lower": 75000,
+  "upper": 79500,
+  "grids": 6,
+  "spacing": "arithmetic",
+  "investment": 30,
+  "leverage": 3,
+  "stopLoss": 74000,
+  "stopLossHigh": 80500,
+  "onStop": "cancel_and_close",
+  "paper": { "quoteBalance": "1000" }
+}

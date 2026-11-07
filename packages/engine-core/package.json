@@ -1,0 +1,17 @@
+{
+  "name": "@sodextra/engine-core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Bot runtime: strategy interface, order manager, risk guards, state store, paper/backtest exchanges",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@sodextra/sodex-client": "workspace:*"
+  }
+}
