@@ -1,0 +1,28 @@
+{
+  "name": "@sodextra/cli",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Run Sodextra bots locally: validate, backtest, paper, live, status, stop, panic",
+  "type": "module",
+  "exports": {
+    "./env": "./src/env.ts",
+    "./lock": "./src/lock.ts",
+    "./bot-file": "./src/bot-file.ts",
+    "./vault": "./src/vault.ts",
+    "./market": "./src/market.ts"
+  },
+  "bin": {
+    "sodextra": "./src/main.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@sodextra/engine-core": "workspace:*",
+    "@sodextra/sodex-client": "workspace:*",
+    "@sodextra/strategies": "workspace:*",
+    "undici": "7.28.0",
+    "viem": "2.57.13"
+  }
+}
